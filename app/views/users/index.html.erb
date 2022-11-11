@@ -37,23 +37,24 @@
       <% end %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h2>Book detail</h2>
+      <h2>Books</h2>
       <table class="table">
-        <tbody>
+        <thead>
           <tr>
-            <td><%= link_to user_path(@book.user_id) do %>
-                  <%= image_tag @book.user.get_profile_image(165,100) %>
-                  <br><%= @book.user.name %>
-                <% end %></td>
-            <td><%= link_to book_path(@book.id) do %>
-                  <%= @book.title %><% end %></td>
-            <td><%= @book.body %></td>
-            <td><%= link_to "Edit", edit_book_path(@book.user_id), 
-                class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to "Destroy", book_path(@book.user_id), 
-                method: :delete, class: "btn btn-sm btn-danger",
-                "data-confirm" => "本当に削除しますか？" %></td>
+            <th>image</th>
+            <th>name</th>
+            <th></th>
+            <th colspan="3"></th>
           </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag user.get_profile_image(165,100) %></td>
+            <td><%= user.name %></td>
+            <td><%= link_to "Show", user_path(user.id) %></td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
