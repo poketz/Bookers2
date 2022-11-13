@@ -1,7 +1,15 @@
-<div class="container mt-5 px-5 px-sm-0">
+<div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
+      <% if @book.errors.any? %>
+        <%= @book.errors.count %> error prohibited this obj from being saved:
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      <% end %>
       <%= image_tag current_user.get_profile_image(165,100) %>
       <table class="table">
         <tbody>
